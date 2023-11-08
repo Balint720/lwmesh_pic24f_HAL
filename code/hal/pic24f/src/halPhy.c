@@ -71,8 +71,6 @@ void halPhyInit(void) {
     // SPI Setup
  #if defined(PLATFORM_DM)
     SPI2CON1bits.SPIEN = 0;                 // Stop and reset SPI2 module
-
-    SPI2CON1Lbits.CKE = 1;                  // Active->idle
     uint8_t x = SPI2BUFL; x = SPI2BUFH;     // Clear receive buffer
     SPI2CON1Lbits.ENHBUF = 0;               // Standard Buffer mode
     SPI2BRGL = 7;                           // Baud rate register (16 MHz, 0 -> 8 MHz SCK)
@@ -88,7 +86,6 @@ void halPhyInit(void) {
     SPI2CON1 = 0x00;
     SPI2CON2 = 0x00;
     SPI2CON1bits.MSTEN = 1;                 // Master mode enable
-    SPI2CON1bits.CKE = 1;                   // Active->idle
     SPI2CON1bits.PPRE = 0b01;               // 16:1 primary prescaler
     SPI2CON1bits.SPRE = 0b000;              // 1:1 secondary prescaler
 
